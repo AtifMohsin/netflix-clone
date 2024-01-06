@@ -46,7 +46,7 @@ const Hero = () => {
     <div className='pl-6 absolute top-[25%] w-[70%] lg:w-[50%] '>
       <h1 className='text-5xl font-nsans-bold'>{title}</h1>
       <p className='font-nsans-medium text-gray-400 pt-2'>{release_date}</p>
-      <p className='hidden md:block'>{capOverview(overview,150)}</p>
+      <p className='hidden md:block ml-2'>{capOverview(overview,150)}</p>
     <div className='flex gap-2 mt-4'>
       <button className='bg-white bg-op text-black text-lg rounded-md font-nsans-medium px-6 py-2 text-center hover:bg-gray-200'>Play</button>
       <button className='bg-gray-500 bg-opacity-50  text-medium font-nsans-medium px-6 py-2 rounded-md  text-center hover:bg-opacity-60'>More Info</button>

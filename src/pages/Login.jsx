@@ -8,8 +8,8 @@ const Login = () => {
 
   const [password, setPassword] =useState("")
 
-  const {user, logIn } = UserAuth();
-  const {navigate} = useNavigate()
+  const { logIn } = UserAuth();
+  const navigate = useNavigate()
   
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -49,7 +49,7 @@ const Login = () => {
          
          />    
 
-         <button className=" font-nsans-small w-full bg-red-600 p-4 rounded-sm" type='submit' > Sign In</button>
+         <button className=" font-nsans-small w-full bg-red-600 p-4 rounded-sm" typeof='submit' > Sign In</button>
 
          <div className='-mt-6 flex justify-between text-gray-500 font-nsans-small'>
           <p className='pl-2 '>

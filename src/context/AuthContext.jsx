@@ -1,4 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import {auth , db} from "../Services/firebase";
+import {doc , setDoc} from "firebase/firestore"
+
 
 import {
     createUserWithEmailAndPassword,
@@ -7,64 +10,51 @@ import {
     onAuthStateChanged
 } from "firebase/auth";
 
-import {auth,db}  from "../Services/firebase";
+
 
 const AuthContext = createContext();
 
-export function AuthContextProvider({ children }) {
-const [user, setUser] = useState({});
-  
-    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-      });
-      return () => {
-        unsubscribe();
-      };
-    }, []);
-  
-    async function signUp(email, password) {
-      try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        setUser(userCredential.user);
-        return userCredential.user;
-      } catch (error) {
-        console.error("Error signing up:", error);
-        throw error;
-      }
+export const AuthContextProvider= ({ children })=> {
+
+    const [user, setUser] = useState();
+
+
+    useEffect(()=>{
+
+        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
+
+            
+            setUser(currentUser)
+        })
+
+        return () => {
+            unsubscribe()
+        }
+
+    },[])
+
+
+    const createUser = async (email,password) =>{
+        await createUserWithEmailAndPassword(auth,email,password)
+        setDoc(doc(db, "users" , email), {
+            moviesToWatch:[],
+        });
+
     }
-  
-    async function logIn(email, password) {
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        setUser(userCredential.user);
-        return userCredential.user;
-      } catch (error) {
-        console.error("Error logging in:", error);
-        throw error;
-      }
+
+    const logOut = () => {
+        return signOut(auth)
     }
-  
-    async function logOut() {
-      try {
-        await signOut(auth);
-        setUser(null); // Update the user state upon logout
-      } catch (error) {
-        console.error("Error logging out:", error);
-        throw error;
-      }
+
+    const logIn = (email,password) => {
+      return signInWithEmailAndPassword(auth,email,password)
     }
+
+
+
   
     return (
-      <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+      <AuthContext.Provider value={{createUser,user, logOut,logIn }}>
         {children}
       </AuthContext.Provider>
     );

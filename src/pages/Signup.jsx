@@ -8,13 +8,13 @@ const Signup = () => {
 
   const [password, setPassword] =useState("")
 
-  const { user, signUp} = UserAuth();
+  const { createUser} = UserAuth();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault()
    
     try {
-      await signUp(email,password);
+      await createUser (email,password);
       navigate("/");
     } catch(err) {
       console.log(err);
@@ -68,7 +68,7 @@ const Signup = () => {
       </div>
 
     </div>
-    
+    z
 
     </div>
   )

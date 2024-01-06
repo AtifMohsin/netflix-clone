@@ -5,7 +5,7 @@ import { UserAuth } from '../context/AuthContext'
 const Navbar = () => {
   
   const {user, logOut} = UserAuth();
-  const {navigate} = useNavigate()
+  const navigate = useNavigate()
   
 
   const handleLogout= async ()=> {
@@ -41,7 +41,7 @@ const Navbar = () => {
   
     <div className='pr-4'>
         <button  className='px-4'><Link to="/profile">Profile</Link></button>
-        <button onClick={handleLogout} className='px-2 bg-red-600 hover:bg-red-700 duration-200 rounded-sm py-1 '><Link to=" ">Logout</Link></button>
+        <button onClick={handleLogout} className='px-2 bg-red-600 hover:bg-red-700 duration-200 rounded-sm py-1 '><Link to="">Logout</Link></button>
         
 
     </div></>
