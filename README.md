@@ -22,3 +22,9 @@ This project served as an excellent learning opportunity to deepen my understand
 
 <h2>Conclusion:</h2>
 The Netflix clone project stands as a testament to my proficiency in modern web development technologies and showcases my ability to create a robust and user-friendly application. It was a challenging yet rewarding experience that significantly enhanced my skill set and problem-solving capabilities.</h1>
+<br><br><br>
+<img src="src/assets/Screenshot (80).png" />
+<br>
+<img src="src/assets/Screenshot (81).png" />
+<br>
+<img src="src/assets/Screenshot (82).png" />
